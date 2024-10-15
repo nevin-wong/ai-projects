@@ -1,0 +1,128 @@
+CSC D84 - Artificial Intelligence
+
+Assignment 2 - MiniMax and Game Trees 
+
+________________________________________________
+
+Student Name 1 (last, first): Nevin
+
+Student Name 2 (last, first):
+
+Student number 1: 
+
+Student number 2:
+
+UTORid 1: 
+
+UTORid 2:
+
+READ THIS AND SIGN YOUR NAME AT THE END:
+
+ I certify that I have read the UTSC code on academic
+honesty and plaguarism. All work submitted as part
+of this assignment is my own.
+
+	Signed: _Nevin_
+
+
+(-5 marks for failing to provide the identifying
+ information requested above)
+________________________________________________
+
+Answer the following questions. Be concise and clear
+but explain carefully when needed.
+
+1 .- (4 marks) Explain the design of your utility function.
+     Describe all the factors that influence its value, and
+     how their influence was evaluated and integrated into
+     a single, meaningful value. Convince us that your utility
+     makes sense!
+
+I designed the utility function to best compute a the utility value that is positive for configurations "good" for the mouse and negative for ones that are "bad". It uses a weighted sum of three features:
+
+i) The length of the shortest path to any cat, weighted by the number of cats. The closer the mouse is to a cat, the more likely it is to be caught and therefore the lower the utility value.
+
+ii) The negative length of the shortest path to any cheese, weighted by 2. The closer the mouse is to a cheese, the more likely it is to winning, and therefore the higher the utility value.
+
+iii) The current search depth, subtracted from the utility value with a weight of 2. This feature is used to prioritize more immediate rewards and reach the cheese quicker.
+
+In addition, two large-magnitude constants 'autoWin' (positive) and 'autoLose' (negative) values are used for if the mouse reaches a cheese or is caught by a cat (the depth feature is still subtracted).
+
+I also introduced a proximity threshold of 6 tiles from a cat to consider it "close". If half or more of the cats are "close", we enter "fight-or-flight". The weight of the second feature is decreased to 0.5 to prioritize getting the hell away from the cats and not worry about the cheese as much.
+
+2 .- (1 marks) Ignoring computation time, what is the effect of
+     search depth (number of turns) on the chances of the mouse
+     winning the game.
+
+Higher search depth allows the mouse to explore more potential future moves and according evaluate the utility value, leading to better decisions and a higher chance of winning. For example, if we're trapped in a corner, a higher search depth has a better chance of finding an escape route.
+
+3 .- (1 marks) What situations will cause your mouse to lose?
+     can these be fixed either with the utility function, or
+     by changing the search depth? if so, how?
+
+One is when the mouse is trapped in a corner, and it cannot find an escape path. In this case, the utility function may not be enough to help the mouse because it only anlyzes the configuration at one certain point in time (doesn't account for past and future) and only gives a mere value; it does not provide provide any information about potential paths. Though increasing search depth helps (as explained in question 2).
+
+Another is where the mouse may struggle, it seems indecisive and waddles back and forth between two spots, which can occur when the utility funtion cannot choose between the importance of going for a cheese or avoiding a cat. In this case, adjusting the weights of the features may help, and/or accounting for indecisive cases in the utility function.
+
+4 .- (1 marks) Compare cats with smartness=.8 against cats with
+     smartness=1 - which are harder for your mouse to beat?
+     why do you think that is?
+
+Cats with smartness 1 are harder for the mouse to beat than 0.8. I think the cats are also using MiniMax to make the next move, and when the smartness is higher, they are better able to use MiniMax to analyze possible future moves I can make as the mouse and make the best decision based on that analysis. 
+
+(Can't know for sure, but perhaps when the smartness is lower, the cats are programmed to make a random move a certain percentage of the time. For example, if the smartness is 0.5, 50% of the cats' moves will be randomly generated and the other 50% is determined by MiniMax.)
+
+5 .- (1 marks) Can the mouse be made unbeatable by having an
+     optimal utility function?
+
+Though it may increase the chance of winning, I don't believe the mouse can be made unbeatable even with an optimal utility function, since the locations of the cats and cheese are randomly generated, there will always be unlucky scenarios where the mouse inevitably loses, like if it is spawned in a corner with all the cats nearby.
+
+6 .- (2 bonus marks) Could a human playing the game in place
+      of the mouse do better than your code? (yes, no, and
+      a reasonable explanation of why)
+
+I don't believe so, for the same reason humans can't beat computers at chess. Computer see further than humans. The cats are already programmed to be very smart and account for potential future moves and they sometimes even beat my MiniMax mouse. Humans can't account for every possible move in their mind and often rely on intuition and heuristics to make decisions; they cannot match a computer's computational power.
+_____________________________________________________
+
+Mark with an 'x' where appropriate. If something is only
+working partially, briefly describe what works, what
+doesn't work, or what problems exist.
+	
+	Complete/Working	Partial		Not done
+
+Utility
+ function       x
+
+MiniMax         x
+
+Alpha/Beta      x
+ pruning
+_____________________________________________________
+
+Marking:
+
+(15 marks) Implemented a non-trivial, clever, and
+           effective utility function. It allows the
+           mouse to win the game often. 
+
+(5 marks) Correctly implementing MiniMax. The algorithm
+           should produce the expected behaviour. The
+           mouse should take a reasonable path to the
+           cheese and avoid cats. The cats will try to
+           catch the mouse. Mouse is not easy to catch.
+
+(5 marks) Implemented alpha-beta pruning. The algorithm
+           significantly reduces the amount of search
+           while producing identical results as those
+           from standard MiniMax 
+
+(15 marks) Competitive (TA assigned) based on how smart
+           your mouse is (this is related to your
+           utility function above!)
+
+(10 marks) Answers in this report file
+
+
+Total for A2:       / out of 50
+
+

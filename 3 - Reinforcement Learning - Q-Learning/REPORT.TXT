@@ -1,0 +1,259 @@
+CSC D84 - Artificial Intelligence
+
+Assignment 3 - Reinforcement Learning - Q Learning
+
+________________________________________________
+
+Student Name 1 (last, first): Nevin
+
+Student Name 2 (last, first):
+
+Student number 1: 
+
+Student number 2:
+
+UTORid 1: 
+
+UTORid 2:
+
+READ THIS AND SIGN YOUR NAME AT THE END:
+
+ I certify that I have read the UTSC code on academic
+honesty and plaguarism. All work submitted as part
+of this assignment is my own.
+
+	Signed: _Nevin_
+
+
+(-5 marks for failing to provide the identifying
+ information requested above)
+________________________________________________
+
+Answer the following questions. Be concise and clear
+but explain carefully when needed.
+
+1 .- (1 mark) Explain your reward function. What game elements
+      are used, and why you think this is a good reward function
+      for this problem.
+
+The reward function first checks if the mouse has eaten a cheese or if a cat has eaten the mouse; if so, it returns a very large positive value in the former case and a very large negative value in the latter case. This is to, obviously, heavily incentivise eating the cheese and not being eaten by a cat.
+
+If neither happens, it then calculates the shortest Manhattan distance to the nearest cheese and the nearest cat, and assigns weights to these distances (There is a heavier weight on the nearest cheese distance to prioritize the cheese over avoiding the cats). We return the weighted distance to the nearest cat (being far from the cats makes the value higher) subtracted by the weighted distance to the nearest cheese (being close to cheese makes the value higher).
+
+2 .- These are multiple experiments (once you are sure your 
+     QLearning code is working!) 
+
+     * IMPORTANT! * For each training run, SAVE the Qtable
+     you will re-use the Qtables later.
+
+     (1 mark) # Experiment 1, 100000 training trials, 20 rounds, random seed 1522,
+     # 8x8 grid, cat-smartness .9
+
+     Initial mouse winning rate (first rate obtained when training starts):
+     0.066529
+
+     Train your mouse, and once trained, run the evaluation and  
+     record the mouse winning rate: 
+     0.712904
+
+     (1 mark) # Experiment 2, 1000000 training trials, 50 rounds, random seed 1522,
+     # 8x8 grid, cat-smartness .9
+
+     Initial mouse winning rate (first rate obtained when training starts):
+     0.065810     
+
+     Train your mouse, and once trained, run the evaluation and  
+     record the mouse winning rate:
+     0.908880
+
+     (1 mark) Would the mouse keep improving and become invincible if
+     you ran, say, 100,000,000 training rounds per batch?
+     Running many more training rounds will likely continue to improve the mouse, there is probably a point of diminishing returns when the win rate will converge. There will always be states in which the cat is unbeatable, such as when the mouse is trapped by walls and the cat is blocking its exit. So it will become very strong but not Invincible. 
+
+4 .- Using the QTable saved from Experiment 2 (NO re-training!)
+
+     (1 mark) # Experiment 3 - Run the evaluation on the 8x8 grid, cat-smartness=.9,
+     # but using the random seed 4289 for the game.
+	
+     Mouse Winning Rate:
+     0.386998
+
+     (1 mark) # Experiment 4 - Run the evaluation on the 8x8 grid, cat-smartness=.9,
+     # but using the random seed 31415 for the game.
+	
+     Mouse Winning Rate:
+     0.506327
+
+     Average rate for Experiement 3 and Experiment 4:
+
+     (1 mark) Compare with the rate obtained in experiment 2. What is happening here?
+     In Q-learning, the trianing trials need to be done in the same environment as the evaluation and the process depends on state/action combinations. Since the training was done on a different seed, where possible actions for each state were completely different, the evaluation on the new seeds resulted in lower win rates.
+
+5 .- Understanding the effects of state space on learning ability:
+
+     (1 mark) # Experiment 5 - Train your mouse on the 16x16 grid, using random seed
+     # 1522, 1000000 trials, and 50 training rounds. Cat-smartness=.9
+
+     Initial mouse winning rate (first rate obtained when training starts):
+     0.029197
+
+     Mouse Winning Rate (from evaluation after training):
+     0.542942
+
+     (1 mark) Compare the final winning rate with that from Experiment 2, what can
+     you say about the difference in winning rates?
+     This experiment resulted in a lower win rate because a 16x16 grid created a larger state space, but we still ran the same amount of trials and training rounds as the 8x8. The agent was not able to widely explore all state/action pairs as thoroughly as in the smaller grid, leading to discovering less possible outcomes and a poorer policy.
+
+6 .- (2 marks) Is standard Q-Learning a rasonable strategy for environments
+     that change constantly? discuss based on the above
+
+No, because as seen in our experiments, the training must be done in the same environment as the evaluation to find a good policy, and even if we can expand the state space, this is still a costly trade-off because the policy worsens.
+
+7 .- (2 marks) Explain your feature set for feature-based Q Learning, and
+               explain why and how each feature is expected to contribute
+	       to helping your mouse win
+
+Feature 1: distance to the closest cat. This is the Manhattan distance between the mouse and the closest cat. If the Manhattan distance is close (3 or less), we use BFS to find the shortest path to the closest cat, since Manhattan distance may not be an accurate indicator of the cat's closeness of the mouse. (We don't use BFS all the time to save computation). This feature is to help the mouse avoid the cats.
+
+Feature 2: distance to the closest cheese. The Manhattan distance between the mouse and the closest cheese. Like feature 1, we use BFS when the distance is close for a more accurate read of closeness to the cheese. This feature is to help the mouse move toward the nearest cheese.
+
+Feature 3: average Manhattan distance between the mouse and all the cats. This feature helps the mouse avoid areas with many cats, and prioritize moves farther from the general vicinity of the cats.
+
+Feature 4: average Manhattan distance between the mouse and all cheeses. This feature helps the mouse prioritize areas where there are many cheeses, increasing the probability of eating a cheese.
+
+Feature 5: the number of available moves the mouse can take. This feature prioritizes the movability of the mouse and helps it choose a move less likely to lead to a dead end.
+
+Feature 6: the number of cats. This feature helps the mouse place more importance on avoiding cats when there are more cats on the board.
+
+Feature 7: the number of cheeses. This feature helps the mouse place more importance on getting to cheese when there are more cheeses on the board, since it is more likely to get to one.
+
+Feature 8: the distance to the center of the board. This is to help the mouse prioritize the center of the board, for the following reasons: there is more general movability in the center, being stuck in a corner increases its chance of getting stuck or trapped by the cats, and there are more strategic paths and positions to evade the cats.
+
+8 .- Carry out the following experiments:
+
+     (1 mark) # Experiment 6: Train your mouse using feature-based Q-Learning, on
+     # the 16x16 grid, one cat, and one cheese, cat-smartness=.9,  
+     # random seed = 1522, and use 1000000 trials and 50 rounds. 
+
+     Initial mouse winning rate (first rate obtained when training starts):
+     0.031387
+     
+     Mouse Winning Rate (from evaluation after training):
+     0.568191
+
+     Compare this rate against the rate obtained in Experiment #5, what
+     are your conclusions regarding the utility of feature-based
+     Q-Learning?
+     This is a higher win rate; feature-based Q-learning performs better than regular Q-learning when the state space is large.
+
+     (1 mark) # Experiment 7, using the saved weights from Experiment 6 (no
+     # re-training) run the evaluation using random seed 4289, same
+     # 1 cheese, 1 cat, and cat-smartness=.9, 16x16 grid
+
+     Mouse Winning Rate (from evaluation after training):
+     0.561111
+
+     (1 mark) # Experiment 8, using the saved weights from Experiment 6 (no
+     # re-training) run the evaluation using random seed 31415, same
+     # 1 cheese, 1 cat, and cat-smartness=.9, 16x16 grid
+
+     Mouse Winning Rate (from evaluation after training):
+     0.579656
+
+     (1 mark) Comparing the winning rates from Experiments #7 and #8 against
+     those from Experiment #6, what can you conclude about feature-
+     based Q-Learning in terms of its ability to deal with changes 
+     to the environment?
+     They are very similar; feature-based Q-learning is better in situations where the environment changes; even if the agent is trained in a different environment than it is evaluated in, it is able to generalize.
+     
+9 .- Carry out the following experiments:
+
+     (1 mark) # Experiment 9: Train your mouse using feature-based Q-Learning, on
+     # the 16x16 grid, 2 cats, and 3 cheeses, cat-smartness=.9,  
+     # random seed = 1522, and use 1000000 trials and 50 rounds. 
+
+     Initial mouse winning rate (first rate obtained when training starts):
+     0.086994
+     
+     Mouse Winning Rate (from evaluation after training):
+     0.649719
+  
+     (1 mark) # Experiment 9: Using the trained weights from Experiment 9, (no
+     # re-training), run the evaluation on the 16x16 grid, 2 cats, 
+     # 3 cheeses, cat-smartness=.9, and random seed 4289
+     
+     Mouse Winning Rate (from evaluation after training):
+     0.634655
+
+     (1 mark) # Experiment 9: Using the trained weights from Experiment 9, (no
+     # re-training), run the evaluation on the 32x32 grid, 2 cats, 
+     # 3 cheeses, cat-smartness=.9, and random seed 4289
+     
+     Mouse Winning Rate (from evaluation after training):
+     0.513173
+
+     (2 marks) Based on the last 3 experiments, what can you conclude regarding
+     the usefulness and applicability of standard Q-Learning vs. 
+     feature-based Q-learning?
+     The experiments where we changed the environments had great win rates. Q-learning is more applicable in stationary environments and feature-based Q-learning is more applicable in dynamic environments where variables can change, like the grid size and the seed.
+
+10 . - (2 marks) We obviously can not train an expensive robot by trial and error,
+      How would you implement feature-based Q-learning for a mobile bot so you
+      can take advantage of reinforcement learning but not spend millions on
+      broken robots that keep falling down the stairs?
+
+We will have to entirely simulate the training process and run the trials in the simulation. We will need to virtually create a state space and simulate changes in the environment when the agent makes actions.      
+_____________________________________________________
+
+Mark with an 'x' where appropriate. If something is only
+working partially, briefly describe what works, what
+doesn't work, or what problems exist.
+	
+                        Complete/Working	Partial		Not done
+
+QLearn                          x
+ update
+
+Reward
+ function                       x
+
+Decide
+ action                         x
+
+featureEval                     x
+
+evaluateQsa                     x
+
+maxQsa_prime                    x
+
+Qlearn_features                 x
+
+decideAction_features           x
+
+_____________________________________________________
+
+Marking:
+
+(5 marks) Implemented QLearn update.
+
+(3 marks) Implemented a reasonable reward function
+
+(3 marks)  Implemented the function that chooses the
+           optimal action based on Qtable and
+           maze
+
+(10 marks) Implemented a non-trivial, good feature set
+	   and evaluation function
+
+(5 marks) Implemented a working feature-based Q-learning
+	   algorithm
+
+(10 marks) Competitive mouse performance
+
+(24 marks) Answers in this report file
+
+(- marks)  Penalty marks
+
+Total for A3:       / out of 60
+
+

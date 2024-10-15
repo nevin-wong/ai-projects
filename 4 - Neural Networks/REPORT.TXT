@@ -1,0 +1,306 @@
+CSC D84 - Artificial Intelligence
+
+Assignment 4 - Neural Networks for OCR
+
+________________________________________________
+
+Student Name 1 (last, first): Nevin
+
+Student Name 2 (last, first):
+
+Student number 1: 
+
+Student number 2:
+
+UTORid 1: 
+
+UTORid 2:
+
+READ THIS AND SIGN YOUR NAME AT THE END:
+
+ I certify that I have read the UTSC code on academic
+honesty and plaguarism. All work submitted as part
+of this assignment is my own.
+
+    Signed: _Nevin _
+
+
+(-5 marks for failing to provide the identifying
+ information requested above)
+________________________________________________
+
+Answer the following questions. Be concise and clear
+but explain carefully when needed.
+
+1 .- (1 marks) Train a 1-layer network using the Logistic activation
+               function. 
+
+	       Copy/paste the reported classification rates for:
+	 	
+	       Training data (last training round):
+
+Digit 0, correct classification rate=0.938492
+Digit 1, correct classification rate=0.968310
+Digit 2, correct classification rate=0.789264
+Digit 3, correct classification rate=0.822917
+Digit 4, correct classification rate=0.875803
+Digit 5, correct classification rate=0.668132
+Digit 6, correct classification rate=0.938856
+Digit 7, correct classification rate=0.883764
+Digit 8, correct classification rate=0.744467
+Digit 9, correct classification rate=0.748428
+Average correct classification rate: 0.837843
+Magnitude of largest network weight: 18.520732
+
+	       Testing data:
+		   
+Digit 0, correct classification rate=0.958163
+Digit 1, correct classification rate=0.969163
+Digit 2, correct classification rate=0.798450
+Digit 3, correct classification rate=0.858416
+Digit 4, correct classification rate=0.872709
+Digit 5, correct classification rate=0.674888
+Digit 6, correct classification rate=0.924843
+Digit 7, correct classification rate=0.881323
+Digit 8, correct classification rate=0.788501
+Digit 9, correct classification rate=0.797820
+Average correct classification rate: 0.852428
+
+2 .- (1 marks) Repeat the process using the hyperbolic tangent activation
+	       function.
+
+Training data (last training round):
+
+Digit 0, correct classification rate=0.958874
+Digit 1, correct classification rate=0.966355
+Digit 2, correct classification rate=0.862213
+Digit 3, correct classification rate=0.863014
+Digit 4, correct classification rate=0.907071
+Digit 5, correct classification rate=0.800000
+Digit 6, correct classification rate=0.956159
+Digit 7, correct classification rate=0.936131
+Digit 8, correct classification rate=0.856275
+Digit 9, correct classification rate=0.864603
+Average correct classification rate: 0.897070
+Magnitude of largest network weight: 29.293471
+
+Testing data:
+
+Digit 0, correct classification rate=0.981633
+Digit 1, correct classification rate=0.967401
+Digit 2, correct classification rate=0.863372
+Digit 3, correct classification rate=0.905941
+Digit 4, correct classification rate=0.917515
+Digit 5, correct classification rate=0.813901
+Digit 6, correct classification rate=0.945720
+Digit 7, correct classification rate=0.903696
+Digit 8, correct classification rate=0.860370
+Digit 9, correct classification rate=0.858276
+Average correct classification rate: 0.901782
+
+3 .- (1 marks) Which type of activation function yielded the best classification
+	       results? which one learned faster?
+
+The hyperbolic tangent activation function learned faster, and yielded the better classification results.
+
+4 .- (1 marks) Train a 2-layer network with hyperbolic-tangent activation, using
+	       150 hidden units. Report the classification rates on training and
+	       testing data just as for 1) and 2).
+		   
+Training data (last training round):
+
+Digit 0, correct classification rate=0.985801
+Digit 1, correct classification rate=0.994643
+Digit 2, correct classification rate=0.963039
+Digit 3, correct classification rate=0.957404
+Digit 4, correct classification rate=0.979167
+Digit 5, correct classification rate=0.961814
+Digit 6, correct classification rate=0.990584
+Digit 7, correct classification rate=0.977186
+Digit 8, correct classification rate=0.967936
+Digit 9, correct classification rate=0.968750
+Average correct classification rate: 0.974632
+Largest hidden to output weight: 10.004123
+Largest input to hidden weight: 15.910430
+
+Testing data:
+
+Evaluating performance on test dataset... mode=2, units=150, sigmoid=1
+Digit 0, correct classification rate=0.981633
+Digit 1, correct classification rate=0.987665
+Digit 2, correct classification rate=0.951550
+Digit 3, correct classification rate=0.953465
+Digit 4, correct classification rate=0.920570
+Digit 5, correct classification rate=0.930493
+Digit 6, correct classification rate=0.971816
+Digit 7, correct classification rate=0.918288
+Digit 8, correct classification rate=0.949692
+Digit 9, correct classification rate=0.957384
+Average correct classification rate: 0.952256
+	       
+5 .- (1 marks) Same as 4), except use 10 hidden units instead
+
+Training data (last training round):
+
+Digit 0, correct classification rate=0.964758
+Digit 1, correct classification rate=0.976015
+Digit 2, correct classification rate=0.903042
+Digit 3, correct classification rate=0.908023
+Digit 4, correct classification rate=0.951579
+Digit 5, correct classification rate=0.880090
+Digit 6, correct classification rate=0.973180
+Digit 7, correct classification rate=0.960432
+Digit 8, correct classification rate=0.918367
+Digit 9, correct classification rate=0.921162
+Average correct classification rate: 0.935665
+Largest hidden to output weight: 4.758210
+Largest input to hidden weight: 2.002850
+
+Testing data:
+
+Evaluating performance on test dataset... mode=2, units=10, sigmoid=1
+Digit 0, correct classification rate=0.975510
+Digit 1, correct classification rate=0.962996
+Digit 2, correct classification rate=0.900194
+Digit 3, correct classification rate=0.867327
+Digit 4, correct classification rate=0.953157
+Digit 5, correct classification rate=0.845291
+Digit 6, correct classification rate=0.956159
+Digit 7, correct classification rate=0.902724
+Digit 8, correct classification rate=0.916838
+Digit 9, correct classification rate=0.894945
+Average correct classification rate: 0.917514
+
+6 .- (1 marks) Same as 5), except use 3 hidden units instead
+
+Training data (last training round):
+
+Digit 0, correct classification rate=0.941176
+Digit 1, correct classification rate=0.960139
+Digit 2, correct classification rate=0.846307
+Digit 3, correct classification rate=0.324803
+Digit 4, correct classification rate=0.000000
+Digit 5, correct classification rate=0.746377
+Digit 6, correct classification rate=0.000000
+Digit 7, correct classification rate=0.368705
+Digit 8, correct classification rate=0.538298
+Digit 9, correct classification rate=0.480808
+Average correct classification rate: 0.520661
+Largest hidden to output weight: 5.186970
+Largest input to hidden weight: 1.544770
+
+Testing data:
+
+Evaluating performance on test dataset... mode=2, units=3, sigmoid=1
+Digit 0, correct classification rate=0.929592
+Digit 1, correct classification rate=0.960352
+Digit 2, correct classification rate=0.723837
+Digit 3, correct classification rate=0.188119
+Digit 4, correct classification rate=0.000000
+Digit 5, correct classification rate=0.864350
+Digit 6, correct classification rate=0.000000
+Digit 7, correct classification rate=0.436770
+Digit 8, correct classification rate=0.282341
+Digit 9, correct classification rate=0.411298
+Average correct classification rate: 0.479666
+
+7 .- (3 marks) Comment on the experiments in 4, 5, and 6, and give your conclusion
+	       regarding the effect of the number of hidden units on classification
+	       accuracy. 
+
+More hidden units leads to a higher classification accuracy in this problem.
+
+	       What is the network with 3 hidden telling you about this classification
+	       problem?
+
+The classifcation accuracy is quite low; this suggests that the neural network is unable to learn the important features/interesting patterns necessary for accurate classification with only 3 hidden units.
+
+8 .- (3 marks) Train the best performing network you can. Use any activation function
+	       you wish, and set the number of hidden units so as to achieve the best
+	       performance.
+
+	       Number of hidden units used: 150
+
+	       Classification rate on testing data:
+Digit 0, correct classification rate=0.964758
+Digit 1, correct classification rate=0.976015
+Digit 2, correct classification rate=0.903042
+Digit 3, correct classification rate=0.908023
+Digit 4, correct classification rate=0.951579
+Digit 5, correct classification rate=0.880090
+Digit 6, correct classification rate=0.973180
+Digit 7, correct classification rate=0.960432
+Digit 8, correct classification rate=0.918367
+Digit 9, correct classification rate=0.921162
+Average correct classification rate: 0.935665
+		   
+- Command: ./NeuralNets 2 150 1 50 0
+- 385000 iterations
+- It's the one from question 4
+
+9 .- (3 marks) Describe how you would build a network to play the cat
+	        and mouse game (move the mouse to help it survive).
+
+		- Describe what the input is in terms of a vector of
+		  values
+
+The input in terms of a vector of value would consist of the x and y values of all the positions of the mouse, cheeses, and cats.
+		  
+		- Describe what the output layer looks like (how many
+		  neurons and what they encode)
+		  
+There would be four neurons, each representing a mouse move (left, right, up, down), they would each be designed to encode a value representing how desirable it is to move in that direction. After feeding forward, we move in the direction of the neuron with the highest output value.
+		  
+		- Describe the error function
+		
+Given an an input and an output neuron, we would use squared error (the difference between the target output for the neuron on the input and the actual output squared).
+To determine the target outputs for an input, we first determine the optimal move. There are many ways to do this, but one way is to use the A* algorithm from A1 (the one that uses the H_cost_no_kitty heuristic) that helps the mouse avoid being eaten, taking into account all positions of the mouse, cheeses, and cats. We can get the optimal move from the path returned.
+Once we have the optimal move, we determine the target outputs. All the target outputs will be 0 or -1 (depending on our activation function), except the one corresponding to the optimal move, which will be set to 1.
+For example, if the optimal move is right, the target outputs will be 0, 1, 0, 0 (corresponding to up, right, left, down).
+
+		- How many layers should you use?
+
+We should use two layers. The first layer can be used to extract basic patterns of interest in the game state, while the second layer can learn to analyze/combine the patterns for more information in deciding the desirability of the moves.
+_____________________________________________________
+
+Mark with an 'x' where appropriate. If something is only
+working partially, briefly describe what works, what
+doesn't work, or what problems exist.
+	
+              Complete/Working	Partial		Not done
+
+Logistic            x
+ activation
+ 
+Tanh                x
+ activation
+
+1L Feed-forward     x
+
+1L Backprop         x
+
+1L Classify         x
+
+2L Feed-forward     x
+
+2L Backprop         x
+
+2L Classify         x
+_____________________________________________________
+
+Marking:
+
+(10) one-layer, logistic network trains and classifies
+
+(5)  one-layer, tanh network trains and classifies
+
+(15) two-layer, tanh network trains and classifies
+
+(5) two-layer, logistic network trains and classifies
+
+(5 marks) Can train 2-layer networks with either activation function
+	  and any number of hidden units
+
+(12 marks) Answers in this report
+
+Total for A4:       / out of 52
